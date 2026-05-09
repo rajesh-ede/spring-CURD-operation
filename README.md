@@ -68,22 +68,22 @@ Repository
 Hibernate/JPA
    ↓
 MySQL Database
-How This Project Works
-1. User Opens Application
-http://localhost:8080
 
 Controller handles request:
 
-@GetMapping("/")
-2. Controller Calls Service
-service.getAllEmployees();
-3. Service Calls Repository
-repository.findAll();
-4. Hibernate Generates SQL
-select * from employees;
-5. Data Sent To Thymeleaf
-model.addAttribute("employees", employees);
-6. Thymeleaf Displays Data
+HTML Form
+   ↓
+@PostMapping("/save")
+   ↓
+@ModelAttribute
+   ↓
+Employee Object Created
+   ↓
+repository.save(employee)
+   ↓
+Hibernate Generates INSERT Query
+   ↓
+Data Stored In MySQL
 <tr th:each="emp : ${employees}">
 
 | Operation       | Method                  |
@@ -94,13 +94,15 @@ model.addAttribute("employees", employees);
 | Delete Employee | repository.deleteById() |
 
 Important Spring Boot Concepts Used
-Annotation	Purpose
-@SpringBootApplication	Main Spring Boot Configuration
-@Controller	Handles Browser Requests
-@Service	Business Logic Layer
-@Entity	Maps Java Class To Database Table
-@Repository	Database Access Layer
-@Autowired	Dependency Injection
-@GetMapping	Handle GET Requests
-@PostMapping	Handle POST Requests
-@ModelAttribute	Bind Form Data To Java Object
+| Annotation             | Purpose                           |
+| ---------------------- | --------------------------------- |
+| @SpringBootApplication | Main Spring Boot Configuration    |
+| @Controller            | Handles Browser Requests          |
+| @Service               | Business Logic Layer              |
+| @Entity                | Maps Java Class To Database Table |
+| @Repository            | Database Access Layer             |
+| @Autowired             | Dependency Injection              |
+| @GetMapping            | Handle GET Requests               |
+| @PostMapping           | Handle POST Requests              |
+| @ModelAttribute        | Bind Form Data To Java Object     |
+
