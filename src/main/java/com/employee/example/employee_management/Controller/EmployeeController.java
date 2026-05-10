@@ -42,8 +42,14 @@ public class EmployeeController {
     }
     //Edit Employee
     @GetMapping("/edit/{id}")
-    public String editEmployee(@PathVariable int id,Model model){
-        model.addAttribute("employee",service.getEmployeeById(id));
+    public String editEmployee(@PathVariable int id,
+                               Model model) {
+
+        model.addAttribute(
+                "employee",
+                service.getEmployeeById(id)
+        );
+
         return "edit-employee";
     }
     // Delete employee
